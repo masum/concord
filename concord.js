@@ -2890,6 +2890,7 @@ function Op(opmltext){
 								}
 						}
 					break;
+				case 66: // CMD+B
 				case 37:
 					// left
 						var active = false;
@@ -3050,14 +3051,14 @@ function Op(opmltext){
 						concordInstance.op.italic();
 						}
 					break;
-				case 66:
-					//CMD+B
-					if(commandKey){
-						keyCaptured=true;
-						event.preventDefault();
-						concordInstance.op.bold();
-						}
-					break;
+//				case 66:
+//					//CMD+B
+//					if(commandKey){
+//						keyCaptured=true;
+//						event.preventDefault();
+//						concordInstance.op.bold();
+//						}
+//					break;
 				case 192:
 					//CMD+`
 					if(commandKey){

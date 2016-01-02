@@ -2759,6 +2759,7 @@ function Op(opmltext){
 			concordInstance.fireCallback("opKeystroke", event);
 			var keyCaptured = false;
 			var commandKey = event.metaKey || event.ctrlKey;
+                        console.log("event.which = " + event.which);
 			switch(event.which) {
 				case 8:
 					//Backspace
@@ -2791,21 +2792,6 @@ function Op(opmltext){
 							concordInstance.op.reorg(right);
 							}
 					break;
-				case 65:
-					//CMD+A
-						if(commandKey) {
-							keyCaptured = true;
-							event.preventDefault();
-							var cursor = concordInstance.op.getCursor();
-							if(concordInstance.op.inTextMode()){
-								concordInstance.op.focusCursor();
-								document.execCommand('selectAll',false,null);
-								}else{
-									concordInstance.editor.selectionMode();
-									cursor.parent().children().addClass("selected");
-									}
-							}
-						break;
 				case 85:
 					//CMD+U
 						if(commandKey) {
@@ -2813,14 +2799,6 @@ function Op(opmltext){
 							event.preventDefault();
 							concordInstance.op.reorg(up);
 							}
-						break;
-				case 68:
-					//CMD+D
-						if(commandKey) {
-							keyCaptured = true;
-							event.preventDefault();
-							concordInstance.op.reorg(down);
-						}
 						break;
 				case 76:
 					//CMD+L
@@ -2912,6 +2890,7 @@ function Op(opmltext){
 								}
 							}
 						break;
+				case 80: // CMD+P
 				case 38:
 					// up
 						keyCaptured = true;
@@ -2954,6 +2933,7 @@ function Op(opmltext){
 								}
 							}
 						break;
+				case 78: // CMD+N
 				case 40:
 					// down
 						keyCaptured = true;
@@ -2980,6 +2960,7 @@ function Op(opmltext){
 								concordInstance.op.go(down,1, event.shiftKey, concordInstance.op.inTextMode());
 								}
 						break;
+				case 68: // CMD+D
 				case 46:
 					// delete
 						if(concordInstance.op.inTextMode()) {
@@ -3051,14 +3032,6 @@ function Op(opmltext){
 						concordInstance.op.italic();
 						}
 					break;
-//				case 66:
-//					//CMD+B
-//					if(commandKey){
-//						keyCaptured=true;
-//						event.preventDefault();
-//						concordInstance.op.bold();
-//						}
-//					break;
 				case 192:
 					//CMD+`
 					if(commandKey){
